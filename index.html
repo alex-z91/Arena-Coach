@@ -72,6 +72,21 @@ body>.wrap:has(> #dashboard){max-width:1480px;width:100%;padding-inline:clamp(18
 #dashboard .coach-content{min-width:0;width:100%}
 @media (min-width:781px) and (max-width:1100px){#dashboard .coach-layout{grid-template-columns:180px minmax(0,1fr);gap:16px}#overview .bento-finance{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:780px){#dashboard .coach-layout{grid-template-columns:minmax(0,1fr)}#dashboard.workspace{margin:12px 0!important}}
+</style><style>
+/* Correção mobile: cards editoriais usam toda a linha do Bento Grid */
+@media(max-width:800px){
+  #overview .arena-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #overview .bento-events,#overview .bento-actions{grid-column:1/-1;min-width:0;width:100%}
+  #overview .bento-events .coach-list,#overview .bento-events .coach-event{min-width:0;width:100%}
+  #overview .bento-events .bento-section-head{flex-wrap:wrap}
+  #overview .bento-actions .coach-toolbar{flex-direction:row;flex-wrap:wrap}
+}
+@media(max-width:540px){
+  #overview .arena-bento{grid-template-columns:minmax(0,1fr)}
+  #overview .bento-finance,#overview .bento-support,#overview .bento-events,#overview .bento-actions{grid-column:1/-1}
+  #overview .bento-actions .coach-toolbar{flex-direction:column}
+  #overview .bento-events .coach-event{box-sizing:border-box}
+}
 </style></head><body><header><div class="wrap top"><a class="brand" href="https://arenarun.alexcoder.space/"><img src="assets/arena-logo.svg" alt="Arena Run" style="display:block;width:clamp(132px,18vw,184px);height:auto;max-height:64px;object-fit:contain"></a><button id="logout" class="secondary" hidden>Sair</button></div></header><div class="wrap"><div id="error" class="error hidden" role="alert"></div><section id="login" class="card" hidden><p class="tip">ÁREA DO ORGANIZADOR</p><h1>Entrar na plataforma</h1><p>Utilize as credenciais fornecidas pelo administrador do Arena Run.</p><form id="loginForm"><label>E-mail<input type="email" name="email" required autocomplete="username"></label><label>Senha<input type="password" name="password" required autocomplete="current-password"></label><button type="submit">Entrar</button></form></section><section id="change" class="card" hidden><p class="tip">PROTEÇÃO DA SUA CONTA</p><h1>Defina sua senha definitiva</h1><p>Este é seu primeiro acesso. Por segurança, você precisa trocar a senha provisória antes de usar o painel.</p><form id="changeForm"><label>Senha provisória<input type="password" name="current_password" required autocomplete="current-password"></label><label>Nova senha (mínimo 8 caracteres, letra, número e especial)<input type="password" name="new_password" minlength="8" maxlength="128" required autocomplete="new-password"></label><label>Confirme a nova senha<input type="password" name="confirm_password" minlength="8" maxlength="128" required autocomplete="new-password"></label><button type="submit">Atualizar senha</button></form></section><section id="dashboard" class="workspace" hidden><div class="coach-layout"><nav class="coach-nav" aria-label="Menu do organizador"><button data-coach="overview" class="active">Visão geral</button><button data-coach="races">Minhas corridas</button><button data-coach="newrace">Nova corrida</button><button data-coach="registrations">Inscrições</button></nav><main class="coach-content"><p class="tip">ARENA COACH · ORGANIZADOR</p><div class="coach-page-top"><div><h1 id="coachHeading">Visão geral</h1><p id="welcome"></p></div><button type="button" id="createRaceTop" class="coach-top-create">+ Nova corrida</button></div><section id="overview" class="coach-section"><div class="arena-bento">
 <div id="overviewFinance" class="bento-finance"></div><div class="bento-support"><div class="coach-card bento-tile bento-count"><div class="bento-kicker"><span class="bento-icon">◈</span> EVENTOS</div><span class="bento-label">Corridas cadastradas</span><strong class="coach-metric" id="mTotal">—</strong><span class="bento-foot">Sua operação em um só lugar</span></div>
 <div class="coach-card bento-tile bento-draft"><div class="bento-kicker">○ EM PREPARAÇÃO</div><span class="bento-label">Rascunhos</span><strong class="coach-metric" id="mDraft">—</strong><span class="bento-foot">Aguardando envio</span></div>
